@@ -1,3 +1,3 @@
 # CFG-Assignments
-Repository for my CFGdegree Foundation module work &amp; assignments.
+Repository for my CFGdegree foundation module work &amp; assignments.
 ## **Assignment One: Git &amp; GitHub**
