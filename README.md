@@ -32,7 +32,7 @@ This repository includes:
    * In this project, I've used `.gitignore` to stop tracking `.idea` files (created in IDEs like PyCharm) to avoid sharing local configuration files.
    * This function is especially helpful when working collaboratively to develop and deploy digital products, as it keeps unnecessary or environment-specific files out of the repository. Keeping the project clean!
 
-### requirements.txt
+### About requirements.txt
 I added the `requirements.txt`file to my directory using the command `pip freeze > requirements.txt`. See image below:
 ![screenshot]
 
