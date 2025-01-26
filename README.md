@@ -14,13 +14,15 @@ This repository includes:
 
 How to Use the Vault
 
-Resources
-* [Git Cheat Sheet](https://education.github.com/git-cheat-sheet-education.pdf)
-* 
 
 ### requirements.txt
+I added the `requirements.txt`file to my directory using the command `pip freeze > requirements.txt`. See image below:
+![screenshot]
 The `requirements.txt` file lists the external libraries needed for this project. It ensures that anyone working on the project can easily install the correct versions of the libraries by running `pip install -r requirements.txt`. This helps maintain consistency and compatibility across different environments.
 
+## Resources
+* [Git Cheat Sheet](https://education.github.com/git-cheat-sheet-education.pdf)
+* 
 
 
 
