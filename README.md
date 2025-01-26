@@ -12,19 +12,36 @@ This repository includes:
 
 ## Features of the Vault
 
-How to Use the Vault
+| **Markdown Feature** | **Descriptions**                                |
+|----------------------|-------------------------------------------------|
+| Headings             | Structured sections for clarity.                |
+| Code Blocks          | Example Git commands to secure your repository. |
+| Inline Links         | Quick access to learning resources.             |
+| Tables               | Organised information for easy understanding.   |
+| Images               | Visual aids to enhance learning.                |
+| Checklists           | A summary of tasks and accomplishments.         |
 
+## How to Use the Vault
+1. Clone the repository:
+`git clone <repository_url>`
+2. Explore the markdown files to learn about Git and GitHub features.
+3. Check the `.gitignore` file to see how we secure sensitive files.
 
 ### requirements.txt
 I added the `requirements.txt`file to my directory using the command `pip freeze > requirements.txt`. See image below:
 ![screenshot]
-The `requirements.txt` file lists the external libraries needed for this project. It ensures that anyone working on the project can easily install the correct versions of the libraries by running `pip install -r requirements.txt`. This helps maintain consistency and compatibility across different environments.
+
+Function: The `requirements.txt` file lists the external libraries needed for this project. It ensures that anyone working on the project can easily install the correct versions of the libraries by running `pip install -r requirements.txt`. This helps maintain consistency and compatibility across different environments.
 
 ## Resources
 * [Git Cheat Sheet](https://education.github.com/git-cheat-sheet-education.pdf)
-* 
+* [Markdown Cheat Sheet](https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet)
 
-
+### Progress Checklist
+* Create GitHub repository ✅
+* Add README.md, .gitignore and requirements.txt ✅
+* Showcase markdown elements ✅
+* Submit Assignment via Slack
 
 
 
