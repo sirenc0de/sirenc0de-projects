@@ -10,6 +10,14 @@ This repository includes:
 * 🪧 A README file to guide you through the vault's contents. 
 * 🛡️ A .gitignore file acting as the "firewall" of the vault. 
 
+## Features of the Vault
+
+How to Use the Vault
+
+Resources
+* [Git Cheat Sheet](https://education.github.com/git-cheat-sheet-education.pdf)
+* 
+
 ### requirements.txt
 The `requirements.txt` file lists the external libraries needed for this project. It ensures that anyone working on the project can easily install the correct versions of the libraries by running `pip install -r requirements.txt`. This helps maintain consistency and compatibility across different environments.
 

@@ -6,7 +6,7 @@ Hi, I'm Tiffany Scott-Vaughan, an aspiring cybersecurity professional with a pas
 * 📚Studying:
   * Code First Girls Software & Data Engineering Programme
   * Udemy 365 Data Science course
-* 🧞‍♀️Hands-On Practice: Exploring cybersecurity through TryHackMe (currently at Voyager level)
+* 🧞‍♀️Hands-On Practice: Exploring cybersecurity using TryHackMe rooms (currently at Voyager level)
 * 👩🏾‍💻Special Interests: DevSecOps, where I can leverage my understanding of the SDLC (Software Develop Life Cycle), technical skills, and communication to drive innovation and security.
 
 ### My Vision 
