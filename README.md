@@ -1,6 +1,22 @@
-### CFG-Assignments
-Repository for my CFGdegree foundation module work &amp; assignments.
-### **Assignment One: Using Git &amp; GitHub**
+### CFGdegree Spring 2025, Assignment One:
+### About Me
+Learn more about my passion for cybersecurity, current activities, and vision for the tech industry in the [About Me](about-me.md) file.
+# 🔐 **<ins>Cybersecurity Vault: Tiffany's GitHub Showcase**
+Welcome to my Cybersecurity Vault! This repository is a creative demonstration of Git and GitHub functionalities, inspired by my journey in tech and cybersecurity.
 
-## **Welcome to the Vault**
-### A Bit About Me
+## About the Vault
+This repository includes:
+* ✅ Demonstrations of six markdown features.
+* 🪧 A README file to guide you through the vault's contents. 
+* 🛡️ A .gitignore file acting as the "firewall" of the vault. 
+
+### requirements.txt
+The `requirements.txt` file lists the external libraries needed for this project. It ensures that anyone working on the project can easily install the correct versions of the libraries by running `pip install -r requirements.txt`. This helps maintain consistency and compatibility across different environments.
+
+
+
+
+
+
+
+
