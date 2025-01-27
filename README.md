@@ -25,7 +25,7 @@ This repository includes:
 1. Clone the repository:
 `git clone git@github.com:sirenc0de/CFG-Assignments.git` (SSH key)
 2. Install the required Python libraries:
-   * Use the `requirements.txt file to set up the necessary dependencies: `pip install -r requirements.txt`
+   * Use the `requirements.txt` file to set up the necessary dependencies: `pip install -r requirements.txt`
 3. Explore the markdown files to learn about Git and GitHub features.
 4. Check the `.gitignore` file:
    * The `.gitignore` file is used to prevent certain files or directories from being tracked by Git
