@@ -23,7 +23,7 @@ This repository includes:
 
 ## How to Use the Vault
 1. Clone the repository:
-`git clone git@github.com:sirenc0de/CFG-Assignments.git` (ssh key)
+`git clone git@github.com:sirenc0de/CFG-Assignments.git` (SSH key)
 2. Install the required Python libraries:
    * Use the `requirements.txt file to set up the necessary dependencies: `pip install -r requirements.txt`
 3. Explore the markdown files to learn about Git and GitHub features.
