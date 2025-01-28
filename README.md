@@ -33,8 +33,8 @@ This repository includes:
    * This function is especially helpful when working collaboratively to develop and deploy digital products, as it keeps unnecessary or environment-specific files out of the repository. Keeping the project clean!
 
 ### About requirements.txt
-I added the `requirements.txt`file to my directory using the command `pip freeze > requirements.txt`. See image below:
-![screenshot]
+I added the `requirements.txt`file to my directory using the command `pip freeze > requirements.txt`.
+![See image below:](images/sc-reqs.txt.png)
 
 *Function*: The `requirements.txt` file lists the external libraries needed for this project. It ensures that anyone working on the project can easily install the correct versions of the libraries by running `pip install -r requirements.txt`. This helps maintain consistency and compatibility across different environments.
 
