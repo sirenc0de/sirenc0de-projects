@@ -45,7 +45,7 @@ Note: I accidentally exited the intended directory and added the file somewhere 
 The `requirements.txt` file lists the external libraries needed for this project. It ensures that anyone working on the project can easily install the correct versions of the libraries by running `pip install -r requirements.txt`. This helps maintain consistency and compatibility across different environments.
 
 ## Concluding the Showcase🧚🏾‍♀️
-Explore the [images folder](images) for examples of the requirements for this assignment.
+Explore the [images folder](images) for more examples of the requirements for this assignment.
 
 ## Resources
 * [Git Cheat Sheet](https://education.github.com/git-cheat-sheet-education.pdf)
@@ -55,7 +55,7 @@ Explore the [images folder](images) for examples of the requirements for this as
 * Create GitHub repository ✅
 * Add README.md, .gitignore and requirements.txt ✅
 * Showcase markdown elements ✅
-* Submit Assignment via Slack
+* Submit Assignment via Slack ✅
 
 
 
