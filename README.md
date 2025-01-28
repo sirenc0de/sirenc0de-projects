@@ -2,7 +2,7 @@
 
 ### About Me
 Learn more about my passion for cybersecurity, current activities, and vision for the tech industry in the [About Me](about-me.md) file.
-# 🔐 **<Cybersecurity Vault: Tiffany's GitHub Showcase**
+# 🔐 **Cybersecurity Vault: Tiffany's GitHub Showcase**
 Welcome to my Cybersecurity Vault! This repository is a creative demonstration of Git and GitHub functionalities, inspired by my journey in tech and cybersecurity.
 
 ## About the Vault
