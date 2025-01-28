@@ -1,4 +1,5 @@
 ### CFG Degree Spring 2025, Assignment One:
+
 ### About Me
 Learn more about my passion for cybersecurity, current activities, and vision for the tech industry in the [About Me](about-me.md) file.
 # 🔐 **<ins>Cybersecurity Vault: Tiffany's GitHub Showcase**
@@ -43,7 +44,8 @@ Note: I accidentally exited the intended directory and added the file somewhere 
 
 The `requirements.txt` file lists the external libraries needed for this project. It ensures that anyone working on the project can easily install the correct versions of the libraries by running `pip install -r requirements.txt`. This helps maintain consistency and compatibility across different environments.
 
-
+## Concluding the Showcase🧚🏾‍♀️
+Explore the [images folder](images) for examples of the requirements for this assignment.
 
 ## Resources
 * [Git Cheat Sheet](https://education.github.com/git-cheat-sheet-education.pdf)
