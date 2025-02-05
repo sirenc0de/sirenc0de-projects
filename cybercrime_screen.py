@@ -3,8 +3,13 @@
 import requests
 # API endpoint for fetching crime categories
 URL = "https://data.police.uk/docs/"
-response = responses.get("https://data.police.uk/docs/")
+# testing api
+response = requests.get("https://data.police.uk/docs/")
 
+if response.status_code == 200:
+    print("API is working")
+else:
+    print(f"Error: {response.status_code}")
 
 # Fetch crime data
 
