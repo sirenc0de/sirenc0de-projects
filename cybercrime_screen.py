@@ -88,17 +88,24 @@ def fetch_crimes_with_force(force_id):
     else:
         print(f"Error: " .format(response.status_code, response.text))
 
-# Step 1: Get police forces and ask user to choose one
+# Step 1: Get police forces
 force_dict = get_police_forces()
 
-if force_dict:
-    user_choice = input("\nEnter the required Police Force ID from the list above: ").strip().lower()
+# Debugging - check input is captured
+if not force_dict:
+    print("No police forces found. Exiting program.")
+    exit()
 
-    # Step 2: Fetch and display crime data for the chosen force
-    if user_choice in force_dict:
-        fetch_crimes_with_force(user_choice)
-    else:
-        print("Police Force ID invalid. Please try again.")
+user_choice = input("\nEnter the required Police Force ID from the list above: ").strip().lower()
+print("User entered: " .format(user_choice)) # debugging step
+
+# Step 2: Fetch and display crime data for the chosen force
+if user_choice in force_dict:
+    fetch_crimes_with_force(user_choice)
+else:
+    print("Police Force ID invalid. Please try again.")
+
+
 
 
 
