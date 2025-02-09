@@ -1,3 +1,6 @@
+from http.client import responses
+from pydoc import resolve
+
 import requests
 
 # app = Cyber Threat Scanner
@@ -39,46 +42,42 @@ import json
 
 # Return empty list [] meaning there were no 'cyber' crimes in London during 2024-12, review all crime categories
 
-def fetch_cyber_crime(lat, lng, date="2024-01"):
-    url = "https://data.police.uk/api/crimes-street/all-crime"
-    params = {
-        "lat": lat, # Latitude
-        "lng": lng, # Longitude
-        "date": date, # Format: YYYY-MM
-    }
+# def fetch_crime_cats(lat, lng):
+#     url = "https://data.police.uk/api/crimes-street/all-crime"
+#     params = {"lat": lat,"lng": lng} # lat for Latitude and lng for Longitude
+#
+#     response = requests.get(url, params=params)
+#
+#     if response.status_code == 200:
+#         crimes = response.json()
+#         categories = set(crime['category'] for crime in crimes)
+#         print("Available crime categories: " .format(categories)) # print all categories
+#
+#     else:
+#         print("Error: " .format(response.status_code, response.text))
 
-    print("Requesting data from:" .format(url))
-    print("Params: " .format(params))
+# Test function
+# lat1, lng2 = ("52.4862", "-1.8904")
+# fetch_crime_cats(lat1, lng2)
 
-    response = requests.get(url, params=params)
-    print("Response Status Code: " .format(response.status_code))
+# function operational but still not returning crime data in given locations, test to see if this is related to a security issue and that the API data does not require a "Police Force ID"
+
+def get_police_forces():
+    url = "https://data.police.uk/api/forces"
+    response = requests.get(url)
 
     if response.status_code == 200:
-        try:
-            crimes = response.json()
-            print("Raw API Response: " .format(crimes))
+        forces = response.json()
+        print("Available Police Forces")
+        for force in forces:
+            print(f"{force['id']}: {force['name']}")
+    else:
+        print("Error: " .format(response.status_code, response.text))
 
-            if not crimes:
-                print("No crimes found for this location and date.")
-                return []
-            # Extract and print all unique crime categories
-            categories = set(crime['category']for crime in crimes)
-            print("Crime categories found: " .format(categories))
+get_police_forces()
 
-            cyber_crimes = [crime for crime in crimes if "cyber" in crime['category'] .lower()]
-            print("Filtered Cyber Crimes: " .format(cyber_crimes))
 
-            return cyber_crimes
-        except json.JSONDecodeError:
-            print("Error: Could not decode JSON response.")
-            print(response.text) # print raw response if JSON fails
-            return []
 
-# Call function
-lat1, lng2 = "51.5074", "-0.1278" # London coordinates
-date_of_cr = "2023-12"
-cyber_crimes_detected = fetch_cyber_crime(lat1, lng2, date_of_cr)
-print("Threat Scanner Results: ", cyber_crimes_detected)
 
 
 
