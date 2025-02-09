@@ -1,5 +1,5 @@
-from http.client import responses
-from pydoc import resolve
+# from http.client import responses
+# from pydoc import resolve
 
 import requests
 
@@ -63,18 +63,44 @@ import json
 # function operational but still not returning crime data in given locations, test to see if this is related to a security issue and that the API data does not require a "Police Force ID"
 
 def get_police_forces():
+    """Fetches and prints all available UK Police Forces."""
     url = "https://data.police.uk/api/forces"
     response = requests.get(url)
 
     if response.status_code == 200:
         forces = response.json()
-        print("Available Police Forces")
+        print("\nAvailable Police Forces")
         for force in forces:
-            print(f"{force['id']}: {force['name']}")
+            print(f"{force['id']}: {force['name']}") # to list all UK police forces, as a dictionary
     else:
         print("Error: " .format(response.status_code, response.text))
+        return {}
 
-get_police_forces()
+def fetch_crimes_with_force(force_id):
+    """Fetches and prints crimes for the chosen UK Police Force."""
+    url = f"https://data.police.uk/api/crimes-no-location?category=all-crimes&force={force_id}"
+    response = requests.get(url)
+
+    if response.status_code == 200:
+        crimes = response.json()
+        print(f"\nCrimes for {force_id} ({force_dict[force_id]}): ")
+        print(crimes[:5]) # to print the first 5 crimes
+    else:
+        print(f"Error: " .format(response.status_code, response.text))
+
+# Step 1: Get police forces and ask user to choose one
+force_dict = get_police_forces()
+
+if force_dict:
+    user_choice = input("\nEnter the required Police Force ID from the list above: ").strip().lower()
+
+    # Step 2: Fetch and display crime data for the chosen force
+    if user_choice in force_dict:
+        fetch_crimes_with_force(user_choice)
+    else:
+        print("Police Force ID invalid. Please try again.")
+
+
 
 
 
