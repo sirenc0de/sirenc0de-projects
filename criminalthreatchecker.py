@@ -8,7 +8,7 @@ print("\nWelcome to the Criminal Threat Checker (CTC).\nThis console application
 # Step 1: fetch all available police forces from UK open police API
 def get_police_forces():
     """Fetches and prints all available UK Police Forces."""
-    url = "https://data.police.uk/api/forces" # API endpoint for fetching all available police forces in the UK.
+    url = "https://data.police.uk/api/forces" # API endpoint for fetching all available police forces in the UK. No API Key required to access this API.
     response = requests.get(url)
 
     if response.status_code == 200:
