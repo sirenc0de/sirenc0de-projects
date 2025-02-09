@@ -36,17 +36,11 @@ def fetch_crimes_by_force(force_id):
         return [] # to return empty list if an error occurs
 
 # Step 3: Save crime data to a JSON file
-def save_to_json(crimes, force_id):
+def save_to_json(data, filename):
     """Saves data to a JSON file in readable format."""
-    sort_choice = input("\nAdd the option to sort the crimes by category? (Yes/No)? ").strip().lower()
-    if sort_choice == 'Yes':
-        sorted_crimes = sorted(crimes, key=lambda x: x["category"]) # to sort crimes by category facilitated by python's inbuilt function, sorted()
-    else:
-        sorted_crimes = sorted(crimes, key=lambda x: x["date"]) # sort crimes by date of offence, if available
-
-    with open(f"crimes_{force_id}.json", "w") as file:
-        json.dump(sorted_crimes, file, indent=4)
-        print(f"\n✅Great! Your crime data successfully saved to {force_id}_crimes.json")
+    with open(filename, "w") as file:
+        json.dump(data, file, indent=4)
+    print(f"\n✅Great! Your crime data successfully saved to {filename}")
 
 # Step 4: Main program
 def main():
