@@ -102,7 +102,7 @@ INSERT INTO Incidents (title, case_description, reported_date, resolved_date, in
     ('Zero-Day Exploit Found', 'Exploit discovered in third-party software, patch pending.', '2024-04-20', NULL, 'Open', 3, 8, 8);
 
 -- Add column for analyst expertise. 
-SET SQL_SAFE_UPDATES = 1;
+SET SQL_SAFE_UPDATES = 0;
 ALTER TABLE Analysts 
 ADD COLUMN specialisation VARCHAR(50) NOT NULL;
 
@@ -146,7 +146,7 @@ UPDATE Analysts
 SET specialisation = 'Incident Response'
 WHERE first_name = 'Derrick' AND last_name = 'Charms';
 
-SET SQL_SAFE_UPDATES = 0;
+SET SQL_SAFE_UPDATES = 1;
 
 -- Data Retrieval Queries, 
 -- 1. Show all Open or Investigating Incidents to help the SOC teams quickly identify ongoing threats. 
