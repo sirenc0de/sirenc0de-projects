@@ -1,0 +1,72 @@
+[
+    {
+        "category": "bicycle-theft",
+        "location_type": null,
+        "location": null,
+        "context": "",
+        "outcome_status": {
+            "category": "Investigation complete; no suspect identified",
+            "date": "2024-12"
+        },
+        "persistent_id": "4833db0f5c9c90f400b847a6ba731604bb9620e938dd01590e7e8065d9e45e5e",
+        "id": 125348965,
+        "location_subtype": "",
+        "month": "2024-12"
+    },
+    {
+        "category": "bicycle-theft",
+        "location_type": null,
+        "location": null,
+        "context": "",
+        "outcome_status": {
+            "category": "Under investigation",
+            "date": "2024-12"
+        },
+        "persistent_id": "6dcd5eea993a0c9dbe6711e7efc7ef7a4607d31728b7c927676756075b1a3902",
+        "id": 125351678,
+        "location_subtype": "",
+        "month": "2024-12"
+    },
+    {
+        "category": "burglary",
+        "location_type": null,
+        "location": null,
+        "context": "",
+        "outcome_status": {
+            "category": "Under investigation",
+            "date": "2024-12"
+        },
+        "persistent_id": "5e5481d64a52f4c3601b91f0e3e666964ffcf32442169255774cf6bb846c93a2",
+        "id": 125349735,
+        "location_subtype": "",
+        "month": "2024-12"
+    },
+    {
+        "category": "burglary",
+        "location_type": null,
+        "location": null,
+        "context": "",
+        "outcome_status": {
+            "category": "Under investigation",
+            "date": "2024-12"
+        },
+        "persistent_id": "baec49342be2b4fb611b109b9a824bba0714a6cd85b87130fd8c0c1711407aa8",
+        "id": 125354014,
+        "location_subtype": "",
+        "month": "2024-12"
+    },
+    {
+        "category": "burglary",
+        "location_type": null,
+        "location": null,
+        "context": "",
+        "outcome_status": {
+            "category": "Investigation complete; no suspect identified",
+            "date": "2024-12"
+        },
+        "persistent_id": "edd1905e625126d312a7845000a8a7df83e17a4b2991f2183834562f1604c979",
+        "id": 125347824,
+        "location_subtype": "",
+        "month": "2024-12"
+    }
+]
