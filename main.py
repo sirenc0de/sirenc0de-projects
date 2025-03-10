@@ -49,9 +49,9 @@ def report_threat():
 
 @app.route("/threats", methods=["GET"]) # Implementing an additional GET Flask route that allows users to filter threats based on their type, severity or simply by name.
 def get_threats():
-    threat_name = request.args.get('threat_name', default=None, type=str)
-    threat_type = request.args.get('threat_type', default=None, type=str)
-    threat_severity = request.args.get('threat_severity', default=None, type=str)
+    threat_name = request.args.get('threat_name', default=None)
+    threat_type = request.args.get('threat_type', default=None)
+    threat_severity = request.args.get('threat_severity', default=None)
 
     query = "SELECT * FROM threats WHERE 1=1"
     params = [ ]
