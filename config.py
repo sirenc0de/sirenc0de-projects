@@ -1,6 +1,6 @@
 DB_CONFIG = {
     "host": "localhost",
     "user": "root",
-    "password": "CyberWin!9",
+    "password": "password",
     "database": "threat_intelligence"
 }
