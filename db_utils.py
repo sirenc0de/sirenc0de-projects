@@ -5,6 +5,6 @@ def get_db_connection():
     try:
         connection = mysql.connector.connect(**DB_CONFIG)
         return connection
-    except mysql.connector.Error as e:
-        print(f"Error: {e}")
+    except mysql.connector.Error as err:
+        print(f"Error: {err}")
         return None

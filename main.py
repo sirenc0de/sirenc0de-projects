@@ -1,3 +1,5 @@
+import mysql.connector
+
 from db_utils import get_db_connection
 
 conn = get_db_connection()
@@ -103,7 +105,29 @@ def update_threat(threat_id):
         if not existing_threat:
             return jsonify({"error": "Threat not found"}), 404
 
+        # Update threat logs
+        cursor.execute("""
+        UPDATE threats
+        SET threat_name = %s, threat_type = %s, threat_severity = %s, threat_description = %s
+        WHERE threat_id = %s
+        """, (threat_name, threat_type, threat_severity, threat_description, threat_id))
+
+        # Commit changes
+        connection.commit()
+
+        return jsonify({"message": "Threat updated successfully!"}), 200
+
+    except mysql.connector.Error as err:
+        return jsonify({"error": f"MySQL Error: {str(err)}"}), 500 # Handle MySQL connection/query errors.
+
+    except Exception as e:
+        return jsonify({"error": f"Error: {str(e)}"}), 500 # Handle any other unexpected errors.
+
     finally:
+        if cursor:
+            cursor.close()
+        if connection:
+            connection.close()
 
 
 if __name__ == "__main__":
