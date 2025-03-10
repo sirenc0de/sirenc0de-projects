@@ -76,6 +76,36 @@ def get_threats():
 
     return jsonify(threats)
 
+@app.route("/threats/<int:threat_id>", methods=["PUT"])
+def update_threat(threat_id):
+    try:
+        # Get data from the request body
+        data = request.get_json()
+
+        # Extract values from the request
+        threat_name = data.get("threat_name")
+        threat_type = data.get("threat_type")
+        threat_severity = data.get("threat_severity")
+        threat_description = data.get("threat_description")
+
+        # Ensure all required fields are present
+        if not threat_name or not threat_type or not threat_severity or not threat_description:
+            return jsonify({"error": "Missing required fields"}), 400
+
+        # Establish connection with DB
+        connection = get_db_connection()
+        cursor = connection.cursor()
+
+        # Check if the threat exists in the DB
+        cursor.execute("SELECT * FROM threats WHERE threat_id = %s", (threat_id,))
+        existing_threat = cursor.fetchone()
+
+        if not existing_threat:
+            return jsonify({"error": "Threat not found"}), 404
+
+    finally:
+
+
 if __name__ == "__main__":
     app.run(debug=True)
 
