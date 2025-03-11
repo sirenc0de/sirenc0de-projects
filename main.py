@@ -1,7 +1,8 @@
+# Import necessary modules from Flask and appropriate utility functions
 import mysql.connector
-
 from db_utils import get_db_connection
 
+# Test your connection with MySQL
 conn = get_db_connection()
 if conn:
     print("Connected to MySQL successfully!")
@@ -9,13 +10,16 @@ if conn:
 else:
     print("Failed to connect to MySQL.")
 
+# Import necessary modules from Flask and appropriate utility functions
 from flask import Flask, jsonify, request
 from db_utils import get_db_connection
 
+# Initialise the Flask application
 app = Flask(__name__)
 
-@app.route("/threats", methods=["GET"]) # API endpoint using a Flask GET route that allows users to retrieve a list of known threats, e.g. threat type - DDoS.
-def get_threats():
+# API endpoint using a Flask GET route that allows users to retrieve a list of known threats.
+@app.route("/threats", methods=["GET"])
+def get_threats(): # Get threat intelligence data from the request body and return in JSON format.
     connection = get_db_connection()
     cursor = connection.cursor(dictionary=True)
     cursor.execute("SELECT * FROM threats;")
@@ -23,8 +27,9 @@ def get_threats():
     connection.close()
     return jsonify(threats)
 
-@app.route("/threat/<int:id>", methods=["GET"]) # This GET route allows users to fetch the details of a specific threat.
-def get_threat(threat_id):
+# This GET route allows users to fetch the details of a specific threat using threat id.
+@app.route("/threat/<int:id>", methods=["GET"])
+def get_threat(threat_id): # Get threat intelligence data from the request body filtered using threat id...
     connection = get_db_connection()
     cursor = connection.cursor(dictionary=True)
     cursor.execute("SELECT * FROM threats WHERE threat_id = %s;", (threat_id,))
@@ -34,7 +39,8 @@ def get_threat(threat_id):
         return jsonify(threat)
     return jsonify({"error": "Threat not found."}), 404
 
-@app.route("/report-threat", methods=["POST"]) # POST route allows users to report new threats, logging them in the Threat Intelligence DB.
+# POST route allows users to report new threats, logging them in the Threat Intelligence DB.
+@app.route("/report-threat", methods=["POST"])
 def report_threat():
     data = request.get_json()
     threat_name = data.get("threat_name")
@@ -49,8 +55,9 @@ def report_threat():
     connection.close()
     return jsonify({"message": "Threat reported successfully"}), 201
 
-@app.route("/threats", methods=["GET"]) # Implementing an additional GET Flask route that allows users to filter threats based on their type, severity or simply by name.
-def get_threats():
+# GET route that allows users to filter threats based on their type, severity or simply by name.
+@app.route("/threats", methods=["GET"])
+def get_threats(): # Get the data from the request body
     threat_name = request.args.get('threat_name', default=None)
     threat_type = request.args.get('threat_type', default=None)
     threat_severity = request.args.get('threat_severity', default=None)
@@ -80,6 +87,9 @@ def get_threats():
 
 @app.route("/threats/<int:threat_id>", methods=["PUT"])
 def update_threat(threat_id):
+    connection = None
+    cursor = None # to initialise connection and cursor
+
     try:
         # Get data from the request body
         data = request.get_json()
@@ -124,9 +134,9 @@ def update_threat(threat_id):
         return jsonify({"error": f"Error: {str(e)}"}), 500 # Handle any other unexpected errors.
 
     finally:
-        if cursor:
+        if cursor is not None:
             cursor.close()
-        if connection:
+        if connection is not None: # To prevent the code from trying to close an object that's not initialised.
             connection.close()
 
 
