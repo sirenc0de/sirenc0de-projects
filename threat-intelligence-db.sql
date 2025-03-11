@@ -21,5 +21,6 @@ INSERT INTO threats (threat_name, threat_type, threat_severity, threat_descripti
     ('Ryuk', 'Ransomware', 'Critical', 'A highly destructive ransomware strain used in targeted attacks, often deployed after an initial infection with TrickBot.'),
     ('DDoS Botnet', 'Malware', 'High', 'A network of infected devices used to launch Distributed Denial of Service (DDoS) attacks against websites and services.');
 
-SELECT * FROM threats;
+ALTER TABLE threats
+MODIFY threat_type VARCHAR(100) DEFAULT 'Unknown';
     

@@ -127,6 +127,7 @@ def update_threat(threat_id):
 
         # Check if the threat exists
         cursor.execute("SELECT * FROM threats WHERE threat_id = %s", (threat_id,))
+        cursor.fetchall() # Fetch and discard the result to clear the cursor's buffer
 
         # Update relevant threat
         cursor.execute("""
