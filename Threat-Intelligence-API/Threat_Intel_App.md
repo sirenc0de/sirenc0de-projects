@@ -1,5 +1,5 @@
 # Threat Intelligence API🧙🏾
-This project is a simple, yet powerful Threat Intelligence API designed to track and report various types of 
+This project is a simple, yet effective Threat Intelligence API designed to track and report various types of 
 cybersecurity threats. The API allows users to view known threats, fetch detailed information about specific 
 threats, and report new threats. It is backed by a MySQL database and features endpoints to interact with the
 data in a meaningful and organised way.
