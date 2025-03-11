@@ -1,4 +1,4 @@
--- Create DB for Threat Intellience API data:
+-- Create DB for Threat Intelligence API data:
 CREATE DATABASE threat_intelligence;
 USE threat_intelligence;
 

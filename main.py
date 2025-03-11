@@ -1,47 +1,74 @@
-# Import necessary modules from Flask and appropriate utility functions
-import mysql.connector
-from db_utils import get_db_connection
-
-# Test your connection with MySQL
-conn = get_db_connection()
-if conn:
-    print("Connected to MySQL successfully!")
-    conn.close()
-else:
-    print("Failed to connect to MySQL.")
-
-# Import necessary modules from Flask and appropriate utility functions
+# Import necessary modules from Flask, MySQL connector
 from flask import Flask, jsonify, request
-from db_utils import get_db_connection
+from db_utils import get_db_connection # Import database connection function
 
 # Initialise the Flask application
 app = Flask(__name__)
 
-# API endpoint using a Flask GET route that allows users to retrieve a list of known threats.
+# API Endpoint: Retrieve a list of known threats (with optional filters).
 @app.route("/threats", methods=["GET"])
-def get_threats(): # Get threat intelligence data from the request body and return in JSON format.
-    connection = get_db_connection()
-    cursor = connection.cursor(dictionary=True)
-    cursor.execute("SELECT * FROM threats;")
-    threats = cursor.fetchall()
-    connection.close()
-    return jsonify(threats)
+def get_threats():
+    """
+    Fetch all threats from the database. Optional filters: threat_name, threat_type, threat_severity.
+    """
+    threat_name = request.args.get('threat_name')
+    threat_type = request.args.get('threat_type')
+    threat_severity = request.args.get('threat_severity')
 
-# This GET route allows users to fetch the details of a specific threat using threat id.
-@app.route("/threat/<int:id>", methods=["GET"])
-def get_threat(threat_id): # Get threat intelligence data from the request body filtered using threat id...
-    connection = get_db_connection()
-    cursor = connection.cursor(dictionary=True)
-    cursor.execute("SELECT * FROM threats WHERE threat_id = %s;", (threat_id,))
-    threat = cursor.fetchone()
-    connection.close()
-    if threat:
+    query = "SELECT * FROM threats WHERE 1=1"
+    params = [ ]
+
+    if threat_name:
+        query += " AND threat_name LIKE %s"
+        params.append(f"{threat_name}%")
+    if threat_type:
+        query += " AND threat_type LIKE %s"
+        params.append(threat_type)
+    if threat_severity:
+        query += " AND threat_severity LIKE %s"
+        params.append(threat_severity)
+
+    try:
+        connection = get_db_connection()
+        cursor = connection.cursor(dictionary=True)
+        cursor.execute(query, tuple(params))
+        threats = cursor.fetchall()
+        return jsonify(threats)
+
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500 # Handle errors
+
+    finally:
+        cursor.close()
+        connection.close()
+
+# API Endpoint: Fetch the details of a specific threat.
+@app.route("/threat/<int:threat_id>", methods=["GET"])
+def get_threat(threat_id):
+    """
+    Fetch a specific threat using its ID.
+    """
+    try:
+        connection = get_db_connection()
+        cursor = connection.cursor(dictionary=True)
+        cursor.execute("SELECT * FROM threats WHERE threat_id = %s;", (threat_id,))
+        threat = cursor.fetchone()
+
+        if not threat:
+            return jsonify({"error": "Threat not found."}), 404
         return jsonify(threat)
-    return jsonify({"error": "Threat not found."}), 404
+
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500
+
+    finally:
+        cursor.close()
+        connection.close()
 
 # POST route allows users to report new threats, logging them in the Threat Intelligence DB.
 @app.route("/report-threat", methods=["POST"])
 def report_threat():
+    # Get the threat intelligence data from the request body in JSON format.
     data = request.get_json()
     threat_name = data.get("threat_name")
     threat_description = data.get("threat_description")
@@ -57,7 +84,7 @@ def report_threat():
 
 # GET route that allows users to filter threats based on their type, severity or simply by name.
 @app.route("/threats", methods=["GET"])
-def get_threats(): # Get the data from the request body
+def get_threats(): # Extract required values from the request
     threat_name = request.args.get('threat_name', default=None)
     threat_type = request.args.get('threat_type', default=None)
     threat_severity = request.args.get('threat_severity', default=None)
@@ -85,13 +112,14 @@ def get_threats(): # Get the data from the request body
 
     return jsonify(threats)
 
+#
 @app.route("/threats/<int:threat_id>", methods=["PUT"])
 def update_threat(threat_id):
-    connection = None
-    cursor = None # to initialise connection and cursor
+    connection = None # Initialise connection
+    cursor = None # Initialise cursor
 
     try:
-        # Get data from the request body
+        # Get data from the request body in JSON format.
         data = request.get_json()
 
         # Extract values from the request
