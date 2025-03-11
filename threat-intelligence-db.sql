@@ -23,4 +23,6 @@ INSERT INTO threats (threat_name, threat_type, threat_severity, threat_descripti
 
 ALTER TABLE threats
 MODIFY threat_type VARCHAR(100) DEFAULT 'Unknown';
+
+SELECT * FROM threats;
     
