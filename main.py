@@ -1,5 +1,4 @@
 # Import necessary modules
-from random import choice
 import requests
 
 BASE_URL = "http://127.0.0.1:5000" # Ensure this matches your Flask API URL
@@ -14,7 +13,7 @@ def welcome():
     print("5. Exit!")
 
 # 1. Retrieve all threats
-def get_all_threats():
+def get_threats():
     response = requests.get(f"{BASE_URL}/threats")
     print("🔹 All Threats:", response.json())
 
@@ -66,7 +65,7 @@ if __name__ == "__main__":
         choice = input("Select an option (1-5): ")
 
         if choice == "1":
-            get_all_threats()
+            get_threats()
         elif choice == "2":
             get_threat_by_id()
         elif choice == "3":

@@ -8,19 +8,30 @@ The project demonstrates the application of Flask for building web APIs, SQL for
 practices in exception handling. The API is designed to be easily extendable and could be further developed to integrate
 with threat intelligence platforms or real-time monitoring systems.
 
-## Key Features
+## Table of Contents
+- [Installation](#installation)
+- [Running the Application](#running-the-application)
+- [API Endpoints](#api-endpoints)
+- [Testing the API](#testing-the-api)
+
+## Access the Repository
+The project files are attached to this repository. To run and test the API clone the repository to your local machine:
+`git clone <https://github.com/sirenc0de/CFG-Assignments>
+cd <CFG-Assignments>`
+
+### Install Required Dependencies
+Install the required Python libraries using pip:
+`pip install -r requirements.txt`
+
+### Running the Application
+Start the Flask application by running main.py file or executing `python main.py` via the terminal.
+The API will be running on http://127.0.0.1:5000.
+
+## API Endpoints
 * GET /threats: Retrieve a list of known threats.
+
 * GET /threat/<threat_id>: Fetch details of a specific threat.
 * POST /report-threat: Log a new threat to the database.
 * PUT /update-threat/<threat_id>: Update existing threat record.
 
-## Installation Instructions
-### Setting Up the Backend
-
-### Running the Backend
-
-### Interacting with the Backend
-
-## API Documentation
-
-### Usage
+## Testing the API

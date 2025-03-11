@@ -1,6 +1,4 @@
 # Import necessary modules and MySQL connector
-from dbm import error
-
 import mysql.connector
 from flask import jsonify, request
 from config import DB_CONFIG
@@ -9,7 +7,7 @@ from config import DB_CONFIG
 def get_db_connection():
     try:
         conn = mysql.connector.connect(**DB_CONFIG)
-        return conn
+        return conn, None
     except mysql.connector.Error as err:
         return None, f"Database connection failed: {err}"
 
@@ -37,7 +35,7 @@ def get_threat_by_id(threat_id):
 
     try:
         cursor = conn.cursor(dictionary=True)
-        cursor.execute("SELECT * FROM threats WHERE threat_id = %s", threat_id,)
+        cursor.execute("SELECT * FROM threats WHERE threat_id = %s", (threat_id,))
         threat = cursor.fetchone()
         conn.close()
 
@@ -58,7 +56,7 @@ def report_threat():
     try:
         cursor = conn.cursor()
         cursor.execute(
-            "INSERT INTO threats (threat_name, threat_type, threat_severity, threat_description, reported_date) VALUES (%s, %s, %s, %s, NOW())",
+            "INSERT INTO threats (threat_name, threat_type, threat_severity, threat_description, date_reported) VALUES (%s, %s, %s, %s, NOW())",
             (data["threat_name"], data["threat_type"], data["threat_severity"], data["threat_description"]),
         )
         conn.commit()
@@ -87,4 +85,3 @@ def update_threat(threat_id):
     except mysql.connector.Error as err:
         conn.close()
         return jsonify({"error": f"Error updating threat: {err}"}), 500
-
