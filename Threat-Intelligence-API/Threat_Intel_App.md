@@ -31,13 +31,13 @@ The API will be running on http://127.0.0.1:5000.
 1. GET /threats: Retrieve a list of known threats.
 * URL: http://127.0.0.1:5000/threats
 
-![get_threats_eg.png](get_threats_eg.png)
+![get_threats_eg.png](images/get_threats_eg.png)
 
 2. GET /threat/<threat_id>: Fetch details of a specific threat.
 URL: http://127.0.0.1:5000/threats/<threat_id>
 - Replace <threat_id> with the threat's ID (e.g. 7).
 
-![get_threat_by_id_eg.png](get_threat_by_id_eg.png)
+![get_threat_by_id_eg.png](images/get_threat_by_id_eg.png)
 
 3. POST /report-threat: Log a new threat to the database.
 URL: http://127.0.0.1:5000/report-threat
@@ -49,10 +49,10 @@ URL: http://127.0.0.1:5000/report-threat
 "threat_description": "Brief description of threat."
 }`
 
-![report_threat_eg.png](report_threat_eg.png)
+![report_threat_eg.png](images/report_threat_eg.png)
 
 4. PUT /update-threat/<threat_id>: Update existing threat record.
 URL: http://127.0.0.1:5000/update-threat/<threat_id>
 
-![update_threat_eg.png](update_threat_eg.png)
+![update_threat_eg.png](images/update_threat_eg.png)
 
