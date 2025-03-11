@@ -38,7 +38,8 @@ def report_threat():
     }
 
     response = requests.post(f"{BASE_URL}/report-threat", json=new_threat)
-    print("🔹 Threat Report Response:", response.json())
+    response.raise_for_status()
+    print(":small_blue_diamond: Threat Report Response:", response.json())
 
 # 4. Update a threat log
 def update_threat():

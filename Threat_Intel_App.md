@@ -28,10 +28,31 @@ Start the Flask application by running main.py file or executing `python main.py
 The API will be running on http://127.0.0.1:5000.
 
 ## API Endpoints
-* GET /threats: Retrieve a list of known threats.
+1. GET /threats: Retrieve a list of known threats.
+* URL: http://127.0.0.1:5000/threats
 
-* GET /threat/<threat_id>: Fetch details of a specific threat.
-* POST /report-threat: Log a new threat to the database.
-* PUT /update-threat/<threat_id>: Update existing threat record.
+![get_threats_eg.png](get_threats_eg.png)
 
-## Testing the API
+2. GET /threat/<threat_id>: Fetch details of a specific threat.
+URL: http://127.0.0.1:5000/threats/<threat_id>
+- Replace <threat_id> with the threat's ID (e.g. 7).
+
+![get_threat_by_id_eg.png](get_threat_by_id_eg.png)
+
+3. POST /report-threat: Log a new threat to the database.
+URL: http://127.0.0.1:5000/report-threat
+- Body (JSON): 
+`{
+"threat_name": "Threat Name",
+"threat_type": "Threat Type",
+"threat_severity": "Threat severity level",
+"threat_description": "Brief description of threat."
+}`
+
+![report_threat_eg.png](report_threat_eg.png)
+
+4. PUT /update-threat/<threat_id>: Update existing threat record.
+URL: http://127.0.0.1:5000/update-threat/<threat_id>
+
+![update_threat_eg.png](update_threat_eg.png)
+
