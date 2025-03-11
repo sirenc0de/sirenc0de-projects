@@ -1,153 +1,83 @@
-# Import necessary modules from Flask, MySQL connector
-from flask import Flask, jsonify, request
-from db_utils import get_db_connection # Import database connection function
+# Import necessary modules
+from random import choice
+import requests
 
-# Initialise the Flask application
-app = Flask(__name__)
+BASE_URL = "http://127.0.0.1:5000" # Ensure this matches your Flask API URL
 
-# API Endpoint: Retrieve a list of known threats (with optional filters).
-@app.route("/threats", methods=["GET"])
-def get_threats():
-    connection = None  # to ensure connection is defined even if an exception occurs early
-    cursor = None
-    """
-    Fetch all threats from the database. Optional filters: threat_name, threat_type, threat_severity.
-    """
-    threat_name = request.args.get("threat_name")
-    threat_type = request.args.get("threat_type")
-    threat_severity = request.args.get("threat_severity")
+def welcome():
+    print("\n🔹 Welcome to the Threat Intelligence API 🔹\n")
+    print("Options:")
+    print("1. View all threats")
+    print("2. View a specific threat")
+    print("3. Report a new threat")
+    print("4. Update an existing threat")
+    print("5. Exit!")
 
-    query = "SELECT * FROM threats WHERE 1=1"
-    params = [ ]
+# 1. Retrieve all threats
+def get_all_threats():
+    response = requests.get(f"{BASE_URL}/threats")
+    print("🔹 All Threats:", response.json())
 
-    if threat_name:
-        query += " AND threat_name LIKE %s"
-        params.append(f"{threat_name}%")
-    if threat_type:
-        query += " AND threat_type LIKE %s"
-        params.append(threat_type)
-    if threat_severity:
-        query += " AND threat_severity LIKE %s"
-        params.append(threat_severity)
+# 2. Fetch details of a specific threat
+def get_threat_by_id():
+    threat_id = input("Enter the Threat ID: ")
+    response = requests.get(f"{BASE_URL}/threat/{threat_id}")
+    print(f"🔹 Threat {threat_id} Details:", response.json())
 
-    try:
-        connection = get_db_connection()
-        cursor = connection.cursor(dictionary=True)
-        cursor.execute(query, tuple(params))
-        threats = cursor.fetchall()
-        return jsonify(threats)
-
-    except Exception as e:
-        return jsonify({"error": str(e)}), 500 # Handle errors
-
-    finally:
-        cursor.close()
-        connection.close()
-
-# API Endpoint: Fetch the details of a specific threat.
-@app.route("/threat/<int:threat_id>", methods=["GET"])
-def get_threat(threat_id):
-    connection = None
-    cursor = None
-    """
-    Fetch a specific threat using its ID.
-    """
-    try:
-        connection = get_db_connection()
-        cursor = connection.cursor(dictionary=True)
-        cursor.execute("SELECT * FROM threats WHERE threat_id = %s;", (threat_id,))
-        threat = cursor.fetchone()
-
-        if not threat:
-            return jsonify({"error": "Threat not found."}), 404
-        return jsonify(threat)
-
-    except Exception as e:
-        return jsonify({"error": str(e)}), 500
-
-    finally:
-        cursor.close()
-        connection.close()
-
-# API Endpoint: Report a new threat.
-@app.route("/report-threat", methods=["POST"])
+# 3. Report a new threat
 def report_threat():
-    connection = None
-    cursor = None
-    """
-    Allow users to report a new threat.
-    Requires: threat_name, threat_description.
-    """
-    # Get the threat intelligence data from the request body in JSON format.
-    data = request.get_json()
-    threat_name = data.get("threat_name")
-    threat_description = data.get("threat_description")
+    threat_name = input("Enter threat name: ")
+    threat_type = input("Enter threat type: ")
+    threat_severity = input("Enter severity (Low/Medium/High/Critical): ")
+    threat_description = input("Enter a brief description of the threat: ")
 
-    if not threat_name or not threat_description:
-        return jsonify({"error": "Missing required fields."}), 400
+    new_threat = {
+        "threat_name": threat_name,
+        "threat_type": threat_type,
+        "threat_severity": threat_severity,
+        "threat_description": threat_description,
+    }
 
-    try:
-        connection = get_db_connection()
-        cursor = connection.cursor()
-        cursor.execute(
-            "INSERT INTO threats (threat_name, threat_description) VALUES (%s, %s);",
-            (threat_name, threat_description)
-        )
-        connection.commit()
-        return jsonify({"message": "Threat reported successfully!"}), 201
+    response = requests.post(f"{BASE_URL}/report-threat", json=new_threat)
+    print("🔹 Threat Report Response:", response.json())
 
-    except Exception as e:
-        return jsonify({"message": str(e)}), 500
+# 4. Update a threat log
+def update_threat():
+    threat_id = input("Enter the Threat ID to update record: ")
+    threat_name = input("Updated threat name: ")
+    threat_type = input ("Updated threat type: ")
+    threat_severity = input("Updated severity (Low/Medium/High/Critical): ")
+    threat_description = input("Updated description: ")
 
-    finally:
-        cursor.close()
-        connection.close()
+    update_data = {
+        "threat_name": threat_name,
+        "threat_type": threat_type,
+        "threat_severity": threat_severity,
+        "threat_description": threat_description,
+    }
 
-# API Endpoint: Update an existing threat.
-@app.route("/threats/<int:threat_id>", methods=["PUT"])
-def update_threat(threat_id):
-    connection = None
-    cursor = None
-    """
-    Update an existing threat in the database.
-    Requires: threat_name, threat_type, threat_severity, threat_description.
-    """
-    data = request.get_json()
-    threat_name = data.get("threat_name")
-    threat_type = data.get("threat_type")
-    threat_severity = data.get("threat_severity")
-    threat_description = data.get("threat_description")
-
-    if not all([threat_name, threat_type, threat_severity, threat_description]):
-        return jsonify({"error": "Missing required fields!"}), 400
-
-    try:
-        connection = get_db_connection()
-        cursor = connection.cursor()
-
-        # Check if the threat exists
-        cursor.execute("SELECT * FROM threats WHERE threat_id = %s", (threat_id,))
-        cursor.fetchall() # Fetch and discard the result to clear the cursor's buffer
-
-        # Update relevant threat
-        cursor.execute("""
-            UPDATE threats
-            SET threat_name = %s, threat_type = %s, threat_severity = %s, threat_description = %s
-            WHERE threat_id = %s
-        """, (threat_name, threat_type, threat_severity, threat_description, threat_id))
-
-        connection.commit()
-        return jsonify({"message": "Threat updated successfully!"}), 200
-
-    except Exception as e:
-        return jsonify({"error": str(e)}), 500
-
-    finally:
-        cursor.close()
-        connection.close()
+    response = requests.put(f"{BASE_URL}/update-threat/{threat_id}", json=update_data)
+    print(f"🔹 Update Threat {threat_id} Response:", response.json())
 
 # Run Flask application
 if __name__ == "__main__":
-    app.run(debug=True)
+    while True:
+        welcome()
+        choice = input("Select an option (1-5): ")
+
+        if choice == "1":
+            get_all_threats()
+        elif choice == "2":
+            get_threat_by_id()
+        elif choice == "3":
+            report_threat()
+        elif choice == "4":
+            update_threat()
+        elif choice == "5":
+            print("\nExiting... Goodbye!👋")
+            break
+        else:
+            print("\n⚠️ Invalid choice, please try again!\n")
+
 
 
