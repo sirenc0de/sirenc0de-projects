@@ -12,19 +12,29 @@ with threat intelligence platforms or real-time monitoring systems.
 - [Installation](#installation)
 - [Running the Application](#running-the-application)
 - [API Endpoints](#api-endpoints)
-- [Testing the API](#testing-the-api)
 
-## Access the Repository
+## Installation
+### Access the Repository
 The project files are attached to this repository. To run and test the API clone the repository to your local machine:
 `git clone <https://github.com/sirenc0de/CFG-Assignments>
 cd <CFG-Assignments>`
+
+### Set Up Virtual Environment
+
 
 ### Install Required Dependencies
 Install the required Python libraries using pip:
 `pip install -r requirements.txt`
 
-### Running the Application
-Start the Flask application by running main.py file or executing `python main.py` via the terminal.
+### Set Up the Database
+- Ensure MySQL is installed and running.
+- Use the Threat Intelligence database in MySQL.
+- Configure a connection in `config.py`
+
+## Running the Application
+- Open file named `db_utils.py` and run to simulate interaction between utility functions and the database, and handle any errors.
+- Open file named `app.py` and run to process requests.
+- Start the Flask application by running `main.py` file or executing `python main.py` via the terminal to interact with the Threat Intelligence database.
 The API will be running on http://127.0.0.1:5000.
 
 ## API Endpoints
