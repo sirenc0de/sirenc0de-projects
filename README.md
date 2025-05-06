@@ -34,18 +34,18 @@ This repository includes:
 ### About `.gitignore`
 In this project, I've used `.gitignore` to stop tracking `.idea` files (created in IDEs like PyCharm) to avoid sharing local configuration files. This function is especially helpful when working collaboratively to develop and deploy digital products, as it keeps unnecessary or environment-specific files out of the repository. Keeping the project clean!
 
-![gitignore-file.png](images/gitignore-file.png)
+![gitignore-file.png](git-demo-images/gitignore-file.png)
 
 ### About `requirements.txt`
 I added the `requirements.txt`file to my directory using the command `pip freeze > requirements.txt`.
 
-![sc-reqs.txt.png](images/adding-requirements.txt-file.png)
+![sc-reqs.txt.png](git-demo-images/adding-requirements.txt-file.png)
 Note: I accidentally exited the intended directory and added the file somewhere else. To fix this, I executed `mv ~/Desktop/requirements.txt ~/CFG-Assignments` to move the file back to the intended directory.
 
 The `requirements.txt` file lists the external libraries needed for this project. It ensures that anyone working on the project can easily install the correct versions of the libraries by running `pip install -r requirements.txt`. This helps maintain consistency and compatibility across different environments.
 
 ## Concluding the Showcase🧚🏾‍♀️
-Explore the [images folder](images) for more examples of the requirements for this assignment.
+Explore the [images folder](git-demo-images) for more examples of the requirements for this assignment.
 
 ## Resources
 * [Git Cheat Sheet](https://education.github.com/git-cheat-sheet-education.pdf)
