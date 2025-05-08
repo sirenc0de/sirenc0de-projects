@@ -1,5 +1,3 @@
-### CFG Degree Spring 2025, Assignment One:
-
 ### About Me
 Learn more about my passion for cybersecurity, current activities, and vision for the tech industry in the [About Me](about-me.md) file.
 # 🔐 **Cybersecurity Vault: Tiffany's GitHub Showcase**
@@ -23,8 +21,8 @@ This repository includes:
 | Checklists           | A summary of tasks and accomplishments.         |
 
 ## How to Use the Vault
-1. Clone the repository:
-`git clone git@github.com:sirenc0de/CFG-Assignments.git` (SSH key)
+1. Clone the repository (using SSH key):
+`git clone git@github.com:sirenc0de/CFG-Assignments.git`
 2. Install the required Python libraries:
    * Use the `requirements.txt` file to set up the necessary dependencies: `pip install -r requirements.txt`
 3. Explore the markdown files to learn about Git and GitHub features.
@@ -50,13 +48,6 @@ Explore the [images folder](git-demo-images) for more examples of the requiremen
 ## Resources
 * [Git Cheat Sheet](https://education.github.com/git-cheat-sheet-education.pdf)
 * [Markdown Cheat Sheet](https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet)
-
-### Progress Checklist
-* Create GitHub repository ✅
-* Add README.md, .gitignore and requirements.txt ✅
-* Showcase markdown elements ✅
-* Submit Assignment via Slack ✅
-
 
 
 
